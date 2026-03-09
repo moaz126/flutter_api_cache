@@ -8,7 +8,7 @@ import 'cache_storage.dart';
 /// Persistent disk-based cache storage implementation using Hive.
 ///
 /// [HiveCacheStorage] stores each [CacheEntry] as a JSON string inside a
-/// Hive [Box<String>]. This provides fast key-value persistence that survives
+/// Hive `Box<String>`. This provides fast key-value persistence that survives
 /// app restarts and works well on all Flutter-supported platforms.
 ///
 /// Call [init] before performing any other operations to ensure the Hive
@@ -30,7 +30,7 @@ class HiveCacheStorage implements CacheStorage {
   /// Initializes the Hive backend and opens the storage box.
   ///
   /// Must be called once before any other operations. Calls
-  /// `Hive.initFlutter()` and then opens a [Box<String>] with [boxName].
+  /// `Hive.initFlutter()` and then opens a `Box<String>` with [boxName].
   @override
   Future<void> init() async {
     await Hive.initFlutter();

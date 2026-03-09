@@ -7,7 +7,7 @@ import 'cache_storage.dart';
 /// An in-memory LRU (Least Recently Used) cache implementation of
 /// [CacheStorage].
 ///
-/// Uses a [LinkedHashMap] to maintain insertion order — the first key is the
+/// Uses a `LinkedHashMap` to maintain insertion order — the first key is the
 /// oldest / least recently used entry and the last key is the most recently
 /// used. When the cache exceeds [maxEntries], the least recently used entries
 /// are evicted automatically.

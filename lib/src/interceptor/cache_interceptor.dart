@@ -8,7 +8,7 @@ import '../managers/cache_manager.dart';
 import '../utils/cache_key_builder.dart';
 
 /// The key used to attach a [CachePolicy] to a Dio request's
-/// [RequestOptions.extra] map.
+/// `RequestOptions.extra` map.
 ///
 /// Example:
 /// ```dart
@@ -16,15 +16,15 @@ import '../utils/cache_key_builder.dart';
 /// ```
 const String cachePolicyKey = 'cachePolicy';
 
-/// A Dio [Interceptor] that automatically handles caching of API responses.
+/// A Dio `Interceptor` that automatically handles caching of API responses.
 ///
-/// Attach this interceptor to a [Dio] instance to transparently cache
+/// Attach this interceptor to a `Dio` instance to transparently cache
 /// responses, serve cached data when appropriate, recover from network errors
 /// using cached fallbacks, and refresh stale entries in the background for the
 /// stale-while-revalidate strategy.
 ///
 /// Policies are resolved in order of precedence:
-/// 1. Per-request policy attached via [RequestOptions.extra] using
+/// 1. Per-request policy attached via `RequestOptions.extra` using
 ///    [cachePolicyKey].
 /// 2. A matching entry in [policyMap] (URL pattern → policy).
 /// 3. The [defaultPolicy] fallback.
@@ -61,7 +61,7 @@ class CacheInterceptor extends Interceptor {
   ///   [CachePolicy.forceRefresh] is `true`.
   /// - For [CacheStrategy.staleWhileRevalidate], returns stale data
   ///   immediately and triggers a background refresh.
-  /// - Resolves the response from cache by calling [handler.resolve] so Dio
+  /// - Resolves the response from cache by calling `handler.resolve` so Dio
   ///   skips the network call entirely.
   @override
   void onRequest(
@@ -142,7 +142,7 @@ class CacheInterceptor extends Interceptor {
   /// If the error is a network error and the strategy is not
   /// [CacheStrategy.networkOnly], the interceptor tries to resolve the request
   /// from cache. If a cached entry is found the error is recovered and a
-  /// cached [Response] is returned instead.
+  /// cached `Response` is returned instead.
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     final policy = _resolvePolicy(err.requestOptions);
@@ -182,7 +182,7 @@ class CacheInterceptor extends Interceptor {
   /// Resolves the [CachePolicy] for a given request.
   ///
   /// Checks in order:
-  /// 1. Per-request policy in [RequestOptions.extra] under [cachePolicyKey].
+  /// 1. Per-request policy in `RequestOptions.extra` under [cachePolicyKey].
   /// 2. First matching URL pattern in [policyMap].
   /// 3. [defaultPolicy] as the final fallback.
   CachePolicy _resolvePolicy(RequestOptions options) {
@@ -201,7 +201,7 @@ class CacheInterceptor extends Interceptor {
 
   /// Refreshes a cache entry in the background for stale-while-revalidate.
   ///
-  /// Creates a separate [Dio] instance (to avoid infinite interceptor loops),
+  /// Creates a separate `Dio` instance (to avoid infinite interceptor loops),
   /// re-issues the original request, and caches the fresh response. If the
   /// [ApiCacheManager.onBackgroundUpdate] callback is set, it is invoked with
   /// the updated entry.
@@ -241,7 +241,7 @@ class CacheInterceptor extends Interceptor {
     }
   }
 
-  /// Returns `true` if the [DioException] represents a network-level error.
+  /// Returns `true` if the `DioException` represents a network-level error.
   ///
   /// Covers connection timeouts, receive timeouts, send timeouts, connection
   /// errors, and unknown errors that are typically caused by lack of
@@ -265,7 +265,7 @@ class CacheInterceptor extends Interceptor {
   }
 
   /// Decodes a JSON string of headers into the format expected by
-  /// [Headers.fromMap].
+  /// `Headers.fromMap`.
   ///
   /// Each header value is expected to be a `List<String>`. Returns an empty
   /// map if decoding fails.
