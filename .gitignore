@@ -22,8 +22,13 @@ migrate_working_dir/
 # Flutter/Dart/Pub related
 .dart_tool/
 .packages
+.flutter-plugins
 .flutter-plugins-dependencies
 build/
 pubspec.lock
 **/doc/api/
 /coverage/
+
+# Test apps (not part of the package)
+test_app/
+example_app/
